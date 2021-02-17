@@ -22,11 +22,14 @@
 - [ ] Bot
 
   - [x] Split long tweets into threads (max size = 9)
+  - [ ] Handle tweeting in the preferred timezone
   - [ ] NLTK for better tweet processing and splitting
   - [ ] Directly link to Roam block (for public roam graphs)
   - [ ] Remove cap on tweet thread size
+  - [ ] Add draft tweet feature
 
 - [ ] Advertise the project
+
   - [ ] Slack
   - [ ] Reddit
   - [ ] Twitter
