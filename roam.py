@@ -27,7 +27,7 @@ def block_search(tag, max_length=None):
         [?block_tag1 :node/title "{tag}"]
     ]"""
     query = " ".join(query.split())
-    out = subprocess.check_output(["roam-TWITTER_API", "query", f"'{query}'"])
+    out = subprocess.check_output(["roam-api", "query", f"'{query}'"])
     # TODO: contribute silent mode for CLI
     json_str = "\n".join(out.decode().split("\n")[2:])  # strip cli info output
     data = list(map(operator.itemgetter(1), json.loads(json_str)))
