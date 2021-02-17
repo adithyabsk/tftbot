@@ -74,13 +74,17 @@ def compose_tweets(api, tweet_list):
 
 
 def sponsor_tweet():
+    print("Posting Sponsor Tweet")
     TWITTER_API.update_status(SPONSOR_MSG)
+    print("Sponsor Tweet posted")
 
 
 def main():
+    print("Collecting Roam Blocks...")
     block = pick_roam_block()
     tweets = split_tweet_msg(block)
     compose_tweets(TWITTER_API, tweets)
+    print("Roam Tweets posted")
 
 
 if __name__ == "__main__":

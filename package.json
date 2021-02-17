@@ -14,6 +14,6 @@
   },
   "homepage": "https://github.com/adithyabsk/roam_bot#readme",
   "dependencies": {
-    "roam-research-private-api": "^0.9.3"
+    "roam-research-private-api": "git+https://github.com/adithyabsk/roam-research-private-api.git"
   }
 }

@@ -24,6 +24,8 @@ The future roadmap for different features.
 - [ ] Bot
 
   - [x] Split long tweets into threads (max size = 9)
+  - [x] For some reason Heroku does not seem to like "cron" mode of APScheduler
+    only interval seems to work.
   - [ ] Handle tweeting in the preferred timezone
   - [ ] NLTK for better tweet processing and splitting
   - [ ] Directly link to Roam block (for public roam graphs)
