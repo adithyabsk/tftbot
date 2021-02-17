@@ -6,6 +6,8 @@
 
 ## Roadmap
 
+The future roadmap for different features.
+
 - [ ] Draft README on setting up bot for other people
 
   - [ ] Acquiring Twitter API credentials
