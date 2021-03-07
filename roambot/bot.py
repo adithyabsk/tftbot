@@ -5,7 +5,7 @@ import textwrap
 import tweepy
 from dotenv import load_dotenv
 
-from roam import block_search
+from .roam import block_search
 
 load_dotenv()
 
