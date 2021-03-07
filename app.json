@@ -1,7 +1,7 @@
 {
   "name": "Roam Research Twitter Bot",
   "description": "A Twitter Bot that tweets out a random block from your Roam Graph.",
-  "repository": "https://github.com/adithyabsk/roambot",
+  "repository": "https://github.com/adithyabsk/roam_bot",
   "logo": "",
   "keywords": ["roam", "twitter", "bot"],
   "env": {

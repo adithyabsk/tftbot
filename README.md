@@ -1,9 +1,13 @@
 # Roam Twitter Bot
 
-[![GitHub](https://img.shields.io/github/license/adithyabsk/roambot?logo=6cc644&style=plastic)](https://github.com/adithyabsk/roambot/blob/master/LICENSE)
+[![GitHub License](https://img.shields.io/github/license/adithyabsk/roam_bot?logo=6cc644&style=plastic)](https://github.com/adithyabsk/roambot/blob/master/LICENSE)
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Twitter Follow](https://img.shields.io/twitter/follow/adithya_balaji?style=social)](https://twitter.com/intent/follow?screen_name=adithya_balaji)
 ![GitHub Sponsors](https://img.shields.io/github/sponsors/adithyabsk?style=social)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+<!-- Since the Repo was renamed, we need to use roam_bot for now, this might
+break soon though. -->
 
 ## Setting up
 
