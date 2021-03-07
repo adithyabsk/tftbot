@@ -1,8 +1,9 @@
 # Roam Twitter Bot
 
-[![GitHub](https://img.shields.io/github/license/adithyabsk/keep2roam?logo=6cc644&style=plastic)](https://github.com/adithyabsk/roam_bot/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/license/adithyabsk/roambot?logo=6cc644&style=plastic)](https://github.com/adithyabsk/roambot/blob/master/LICENSE)
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Twitter Follow](https://img.shields.io/twitter/follow/adithya_balaji?style=social)](https://twitter.com/intent/follow?screen_name=adithya_balaji)
+![GitHub Sponsors](https://img.shields.io/github/sponsors/adithyabsk?style=social)
 
 ## Setting up
 

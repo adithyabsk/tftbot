@@ -1,0 +1,50 @@
+{
+  "name": "Roam Research Twitter Bot",
+  "description": "A Twitter Bot that tweets out a random block from your Roam Graph.",
+  "repository": "https://github.com/adithyabsk/roambot",
+  "logo": "",
+  "keywords": ["roam", "twitter", "bot"],
+  "env": {
+    "TWITTER_CONSUMER_KEY": {
+      "description": "The Twitter consumer key."
+    },
+    "TWITTER_CONSUMER_SECRET": {
+      "description": "The Twitter consumer secret."
+    },
+    "TWITTER_ACCESS_TOKEN": {
+      "description": "The Twitter access token."
+    },
+    "TWITTER_ACCESS_SECRET": {
+      "description": "The Twitter access secret."
+    },
+    "ROAM_API_GRAPH": {
+      "description": "The Roam graph name."
+    },
+    "ROAM_API_EMAIL": {
+      "description": "The email used to register for Roam Research."
+    },
+    "ROAM_API_PASSWORD": {
+      "description": "The password for Roam Research."
+    },
+    "ROAM_TAG": {
+      "description": "The tag to query for in the Roam graph."
+    }
+  },
+  "formation": {
+    "clock": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/jontewks/puppeteer-heroku-buildpack"
+    },
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
