@@ -12,10 +12,8 @@ load_dotenv()
 # Consts
 MAX_TWEET = 240
 MAX_NUM_TWEET = 9
-# TODO: convert this to GH sponsors
-SPONSOR_MSG = (
-    "Consider supporting this bot's creator @adithya_balaji"
-)
+SPONSOR_URL = "https://github.com/sponsors/adithyabsk?o=sd&sc=t"
+SPONSOR_MSG = f"Consider supporting this bot's creator @adithya_balaji\n\n{SPONSOR_URL}"
 
 # env vars
 ROAM_TAG = os.environ["ROAM_TAG"]
