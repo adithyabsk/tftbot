@@ -24,11 +24,14 @@ twitter_consumer_secret = os.environ["TWITTER_CONSUMER_SECRET"]
 twitter_access_token = os.environ["TWITTER_ACCESS_TOKEN"]
 twitter_access_secret = os.environ["TWITTER_ACCESS_SECRET"]
 
-# Initialize roam twitter bot only after environment variables have been set
+# Initialize Roam Twitter bot only after environment variables have been set
 rtb = RoamTwitterBot(
     roam_tag, roam_api_graph, roam_api_email, roam_api_password, twitter_consumer_key,
     twitter_consumer_secret, twitter_access_token, twitter_access_secret
 )
+
+# Immediately run a test tweet
+rtb.tweet_roam_note()
 
 # TODO: figure out handling custom timezones
 # Create an instance of scheduler and add function

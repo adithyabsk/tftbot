@@ -4,7 +4,6 @@
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Twitter Follow](https://img.shields.io/twitter/follow/adithya_balaji?style=social)](https://twitter.com/intent/follow?screen_name=adithya_balaji)
 ![GitHub Sponsors](https://img.shields.io/github/sponsors/adithyabsk?style=social)
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 <!-- Since the Repo was renamed, we need to use roam_bot for now, this might
 break soon though. -->
@@ -27,9 +26,12 @@ you can set a manual password.
 
 ### Heroku
 
-* TODO
+Simply click the button and fill in the credentials you got from the previous
+step. You should immediately see a sample tweet show up on your timeline.
 
-### Locally
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+### Locally / Custom Server
 
 Developed on Python 3.8+
 
