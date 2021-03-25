@@ -16,7 +16,7 @@ def test_integration_end_to_end_roam():
 
     from roambot.bot import RoamTwitterBot
 
-    load_dotenv()
+    load_dotenv("../.env")
 
     roam_tag = os.environ["ROAM_TAG"]
     roam_api_graph = os.environ["ROAM_API_GRAPH"]

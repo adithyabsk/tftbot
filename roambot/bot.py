@@ -53,28 +53,36 @@ class RoamTwitterBot:
     # TODO: Maybe look into configurations for more intelligent heuristics for picking indexed roam blocks? Spaced
     #       repetition, etc...
     def pick_roam_block(self):
+        """Pick a random roam block from a list of roam blocks
+
+        Returns:
+            tuple[str, str]: the block id and the block text
+
+        """
         options = block_search(
             self.roam_tag,
             self.roam_api_graph,
             self.roam_api_email,
             self.roam_api_password,
             max_length=MAX_TWEET * MAX_NUM_TWEET)
+
         return random.choice(options)
 
     # TODO: Maybe use nltk to tokenize so that thoughts are self contained in tweets. Do a little more
     #       digging to see if this is a solved problem; cursory searches indicate it is not.
     #       https://stackoverflow.com/a/4576110/3262054
-    @staticmethod
-    def split_tweet_msg(long_string):
-        if len(long_string) <= MAX_TWEET:
-            return [long_string]
+    def split_tweet_msg(self, long_string, block_id):
+        block_url = f"https://roamresearch.com/#/app/{self.roam_api_graph}/page/{block_id}"
+        template_tweet = f"{long_string}\n\n{block_url}"
+        if len(template_tweet) <= MAX_TWEET:
+            return [template_tweet]
         else:
             # Should only be 6 characters max since max number of tweets is 9. This is a hacky limit
             # so that I don't have to handle the case where I am not "maximally tweeting". (Note we add
             # a newline character to make it six
             thread_indicator = "\n\n({}/{})"
             ind_len = 7
-            snippets = textwrap.wrap(long_string, MAX_TWEET - ind_len)
+            snippets = textwrap.wrap(template_tweet, MAX_TWEET - ind_len)
             return [
                 tweet + thread_indicator.format(i, len(snippets))
                 for i, tweet in enumerate(snippets, 1)
@@ -105,7 +113,7 @@ class RoamTwitterBot:
     def tweet_roam_note(self):
         # We use prints here because Heroku prints these to the the logs
         print("Collecting Roam Blocks...")
-        block = self.pick_roam_block()
-        tweets = self.split_tweet_msg(block)
+        block_id, block_text = self.pick_roam_block()
+        tweets = self.split_tweet_msg(block_text, block_id)
         self.compose_tweets(tweets)
         print("Roam Tweets posted")

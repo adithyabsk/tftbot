@@ -8,7 +8,7 @@ import pytest
 @pytest.mark.skipif(os.getenv("INTEGRATION", False) is False,
                     reason=(
                             "Requires roam-api to be installed and env vars to be configured. "
-                            "Runs for around 10s"
+                            "Runs for around 9s"
                     ))
 def test_integration_roam_query():
     """Test Roam graph queries.
@@ -20,7 +20,7 @@ def test_integration_roam_query():
 
     from roambot.roam import block_search
 
-    load_dotenv()
+    load_dotenv("../.env")
 
     roam_tag = os.environ["ROAM_TAG"]
     roam_api_graph = os.environ["ROAM_API_GRAPH"]

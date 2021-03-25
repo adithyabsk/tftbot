@@ -1,7 +1,64 @@
 import os
-import subprocess
-import json
-import operator
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions
+from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
+
+ROAM_SIGNIN_URL = "https://roamresearch.com/#/signin"
+ROAM_APP_URL = "https://roamresearch.com/#/app"
+TIMEOUT = 10
+
+
+def setup_roam_browser(roam_api_graph, roam_api_email, roam_api_password):
+    firefox_options = webdriver.FirefoxOptions()
+    firefox_options.headless = True
+    browser = webdriver.Firefox(options=firefox_options,
+                                firefox_profile=webdriver.FirefoxProfile(),
+                                service_log_path=os.devnull)
+
+    browser.get(ROAM_SIGNIN_URL)
+    wait = WebDriverWait(browser, TIMEOUT)
+
+    # Check that we are on the sign in page
+    wait.until(expected_conditions.url_to_be(ROAM_SIGNIN_URL), "failed to navigate to sign in page")
+
+    # Fill Email and Password and log in
+    email_elem = browser.find_element_by_css_selector("input[name='email']")
+    email_elem.send_keys(roam_api_email)
+    passwd_elem = browser.find_element_by_css_selector("input[name='password']")
+    passwd_elem.send_keys(roam_api_password)
+    passwd_elem.send_keys(Keys.RETURN)
+
+    # Check that we are on the graph list page
+    wait.until(expected_conditions.url_to_be(ROAM_APP_URL), "failed to navigate to graph list page")
+    graph_url = ROAM_APP_URL+f"/{roam_api_graph}"
+    browser.get(graph_url)
+
+    # Check that we are now on the graph page
+    wait.until(expected_conditions.url_to_be(graph_url), "failed to navigate to graph page")
+
+    # The page is fully loaded
+    wait.until(expected_conditions.visibility_of_element_located((By.CLASS_NAME, "roam-main")),
+               "failed to navigate to graph page")
+
+    return browser
+
+
+def run_query(browser, query):
+    norm_query = " ".join(query.split())
+    check_element = "return window.roamAlphaAPI"
+
+    if not browser.execute_script(check_element):
+        raise ValueError("RoamAPI not found")
+
+    # Run query using roam js API in browser
+    get_query = f"return window.roamAlphaAPI.q('{norm_query}')"
+    # Get the string pair data of the form [["id", "note"], ...]
+    data_pairs = browser.execute_script(get_query)
+
+    return data_pairs
 
 
 # TODO: If this ever gets more complicated than this, consider turning it into a class
@@ -23,7 +80,7 @@ def block_search(tag, roam_api_graph, roam_api_email, roam_api_password, max_len
 
     """
     # source: https://davidbieber.com/snippets/2021-01-04-more-datalog-queries-for-roam/
-    # TODO: I need to understand dataomic better so I can expand this to arbitrary length tags
+    # TODO: I need to understand datalog better so I can expand this to arbitrary length tags
     # TODO: arbitrary boolean logic for including and excluding tags
     # TODO: rules for snagging tag children.
     query = f"""[
@@ -34,24 +91,13 @@ def block_search(tag, roam_api_graph, roam_api_email, roam_api_password, max_len
         [?block :block/refs ?block_tag1]
         [?block_tag1 :node/title "{tag}"]
     ]"""
-    query = " ".join(query.split())
-    env = {}
-    env.update(os.environ)
-    env.update({
-        "ROAM_API_GRAPH": roam_api_graph,
-        "ROAM_API_EMAIL": roam_api_email,
-        "ROAM_API_PASSWORD": roam_api_password,
-    })
-    out = subprocess.check_output(
-        ["roam-api", "query", f"'{query}'"],
-        stderr=subprocess.STDOUT,
-        env=env
-    )
-    # TODO: contribute silent mode for CLI
-    json_str = "\n".join(out.decode().split("\n")[2:])  # strip cli info output
-    data = list(map(operator.itemgetter(1), json.loads(json_str)))
+    browser = setup_roam_browser(roam_api_graph, roam_api_email, roam_api_password)
+    data_pairs = run_query(browser, query)
 
+    # data = list(map(operator.itemgetter(1), data_pairs))
+
+    # Check to make sure that the strings are smaller than `max_length`
     if max_length is not None:
-        data = [d for d in data if len(data) < max_length]
+        data_pairs = [d for d in data_pairs if len(d[1]) < max_length]
 
-    return data
+    return data_pairs

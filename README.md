@@ -35,6 +35,13 @@ step. You should immediately see a sample tweet show up on your timeline.
 
 Developed on Python 3.8+
 
+Install geckodriver (required for selenium)
+
+* Linux: https://askubuntu.com/a/871077
+* MacOS: `brew install geckodriver`
+
+Then run the following commands
+
 ```shell
 $ python -m venv roam_bot
 $ ./roam_bot/bin/activate
@@ -70,25 +77,30 @@ the instructions above.
 
 The future roadmap for different features.
 
-- [ ] Draft README on setting up bot for other people
+- [x] Draft README on setting up bot for other people
 
-  - [ ] Acquiring Twitter API credentials
-  - [ ] Deploying bot to Heroku
+  - [x] Acquiring Twitter API credentials
+  - [x] Deploying bot to Heroku
 
 - [ ] Roam
 
   - [x] Pull blocks from roam database using a single backlink/tag
+  - [x] Switch from `roam-api` to self-contained dependency
   - [ ] Implement arbitrary tag inclusion and exclusion
   - [ ] Rules for tag parents and children
   - [ ] Allow users to provide custom datomic expressions
   - [ ] Look into integration with official Roam (beta) API
+  - [ ] Make urls optional
   
 - [ ] Bot
 
   - [x] Split long tweets into threads (max size = 9)
   - [x] For some reason Heroku does not seem to like "cron" mode of APScheduler
     only interval seems to work.
-  - [x] Refactor bot into python package
+  - [x] Refactor the bot into python package
+  - [ ] Migrate to [Heroku Scheduler](https://elements.heroku.com/addons/scheduler)
+    to use one-off runners instead of continuously running dyno. There are only
+    550 dyno hours for the free tier in a month which is ~22 days.
   - [ ] Handle tweeting in the preferred timezone
   - [ ] NLTK for better tweet processing and splitting
   - [ ] Directly link to Roam block (for public roam graphs)
@@ -97,6 +109,6 @@ The future roadmap for different features.
 
 - [ ] Advertise the project
 
-  - [ ] Slack
+  - [x] Slack
   - [ ] Reddit
   - [ ] Twitter
