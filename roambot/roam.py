@@ -12,17 +12,18 @@ TIMEOUT = 10
 
 
 def setup_roam_browser(roam_api_graph, roam_api_email, roam_api_password):
-    firefox_options = webdriver.FirefoxOptions()
-    firefox_options.headless = True
-    browser = webdriver.Firefox(options=firefox_options,
-                                firefox_profile=webdriver.FirefoxProfile(),
-                                service_log_path=os.devnull)
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.headless = True
+    browser = webdriver.Chrome(options=chrome_options, service_log_path=os.devnull)
 
     browser.get(ROAM_SIGNIN_URL)
     wait = WebDriverWait(browser, TIMEOUT)
 
     # Check that we are on the sign in page
-    wait.until(expected_conditions.url_to_be(ROAM_SIGNIN_URL), "failed to navigate to sign in page")
+    wait.until(
+        expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, "input[name='email']")),
+        "failed to navigate to sign in page"
+    )
 
     # Fill Email and Password and log in
     email_elem = browser.find_element_by_css_selector("input[name='email']")

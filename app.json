@@ -38,7 +38,7 @@
   },
   "buildpacks": [
     {
-      "url": "https://github.com/pyronlaboratory/heroku-integrated-firefox-geckodriver"
+      "url": "https://github.com/heroku/heroku-buildpack-google-chrome"
     },
     {
       "url": "heroku/python"
