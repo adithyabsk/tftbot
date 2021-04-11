@@ -1,4 +1,5 @@
 import os
+import time
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -8,7 +9,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 ROAM_SIGNIN_URL = "https://roamresearch.com/#/signin"
 ROAM_APP_URL = "https://roamresearch.com/#/app"
-TIMEOUT = 10
+TIMEOUT = 15
 
 
 def setup_roam_browser(roam_api_graph, roam_api_email, roam_api_password):
@@ -20,6 +21,7 @@ def setup_roam_browser(roam_api_graph, roam_api_email, roam_api_password):
     wait = WebDriverWait(browser, TIMEOUT)
 
     # Check that we are on the sign in page
+    time.sleep(2)
     wait.until(
         expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, "input[name='email']")),
         "failed to navigate to sign in page"
