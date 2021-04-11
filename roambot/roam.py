@@ -39,7 +39,7 @@ def setup_roam_browser(roam_api_graph, roam_api_email, roam_api_password):
     browser.get(graph_url)
 
     # Check that the page is fully loaded
-    wait.until(
+    WebDriverWait(browser, 60).until(
         expected_conditions.visibility_of_element_located((By.CLASS_NAME, "roam-app")),
         "failed to navigate to graph page"
     )
