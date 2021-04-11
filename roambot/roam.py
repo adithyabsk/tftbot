@@ -21,7 +21,6 @@ def setup_roam_browser(roam_api_graph, roam_api_email, roam_api_password):
     wait = WebDriverWait(browser, TIMEOUT)
 
     # Check that we are on the sign in page
-    time.sleep(2)
     wait.until(
         expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, "input[name='email']")),
         "failed to navigate to sign in page"
@@ -35,16 +34,15 @@ def setup_roam_browser(roam_api_graph, roam_api_email, roam_api_password):
     passwd_elem.send_keys(Keys.RETURN)
 
     # Check that we are on the graph list page
-    wait.until(expected_conditions.url_to_be(ROAM_APP_URL), "failed to navigate to graph list page")
+    wait.until(expected_conditions.visibility_of_element_located((By.PARTIAL_LINK_TEXT, f"{roam_api_graph}")))
     graph_url = ROAM_APP_URL+f"/{roam_api_graph}"
     browser.get(graph_url)
 
-    # Check that we are now on the graph page
-    wait.until(expected_conditions.url_to_be(graph_url), "failed to navigate to graph page")
-
-    # The page is fully loaded
-    wait.until(expected_conditions.visibility_of_element_located((By.CLASS_NAME, "roam-main")),
-               "failed to navigate to graph page")
+    # Check that the page is fully loaded
+    wait.until(
+        expected_conditions.visibility_of_element_located((By.CLASS_NAME, "roam-app")),
+        "failed to navigate to graph page"
+    )
 
     return browser
 
