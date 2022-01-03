@@ -17,6 +17,15 @@ which will let you the credentials you need to create a bot. Should get
 automatically approved since you are an individual developer. Once approved,
 getting credentials should be intuitive.
 
+### Obsidian Credentials
+
+* You will need to sync your obsidian vault to Google Drive
+* Obtain the credentials JSON file by following the following instructions
+  * https://developers.google.com/workspace/guides/create-credentials
+  * You will need to authorize Drive API
+* Then you will need to manually run the `generate_initial_token` function
+which will generate the seed token used in the server deployment
+
 ### Roam credentials
 
 If you signed up using Google OAuth, make sure to reset your password so that

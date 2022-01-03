@@ -3,3 +3,9 @@ python-dotenv==0.15.0
 APScheduler==3.7.0
 tzlocal==2.1
 selenium==3.141.0
+
+# obsidian requirements
+google-api-python-client==2.33.0
+google-auth-httplib2==0.1.0
+google-auth-oauthlib==0.4.6
+tqdm==4.62.3

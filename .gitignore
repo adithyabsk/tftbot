@@ -140,3 +140,5 @@ cython_debug/
 # Custom
 .idea/*
 .python-version
+data/*
+token.json
