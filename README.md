@@ -20,11 +20,20 @@ getting credentials should be intuitive.
 ### Obsidian Credentials
 
 * You will need to sync your obsidian vault to Google Drive
+  * Copy the id of your vault folder and store that somewhere, you will fill
+  that in for `NOTES_FOLDER_ID` when setting up the server.
 * Obtain the credentials JSON file by following the following instructions
   * https://developers.google.com/workspace/guides/create-credentials
   * You will need to authorize Drive API
 * Then you will need to manually run the `generate_initial_token` function
-which will generate the seed token used in the server deployment
+* Run:
+
+```shell
+./generate_token.py
+```
+
+* Copy the contents of the file and set it to `GDRIVE_TOKEN` in `.env` (this is
+also used when deploying the server)
 
 ### Roam credentials
 
