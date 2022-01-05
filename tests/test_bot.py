@@ -4,19 +4,21 @@ import os
 
 import pytest
 
+RUN_INTEGRATION = bool(os.getenv("INTEGRATION", False))
+
 
 def test_split_tweet_240():
-    from roambot import RoamTwitterBot
+    from tftbot.bot import TFTTwitterBotMixin
 
     li240 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a convallis magna."
 
     random_id = "W9oV9twrW"
-    rtb = RoamTwitterBot(*(["test"] * 8))
+    rtb = TFTTwitterBotMixin(*(["test"] * 4))
     assert li240 in rtb.split_tweet_msg(li240, random_id)[0]
 
 
 def test_split_tweet_960():
-    from roambot import RoamTwitterBot
+    from tftbot.bot import TFTTwitterBotMixin
 
     li960 = (
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id mollis magna. Phasellus quis mollis "
@@ -33,22 +35,22 @@ def test_split_tweet_960():
 
     # this should be five because of the slippage from indicating the number of tweets in the thread
     random_id = "W9oV9twrW"
-    rtb = RoamTwitterBot(*(["test"] * 8))
+    rtb = TFTTwitterBotMixin(*(["test"] * 4))
     assert len(rtb.split_tweet_msg(li960, random_id)) == 5
 
 
 @pytest.mark.skipif(
-    os.getenv("INTEGRATION", False) is False,
+    not RUN_INTEGRATION,
     reason=(
         "WARNING: Tweets out to live connected account. Requires twitter env "
         "vars to be configured. Runs for around 1s."
     ),
 )
-def test_integration_bot_tweet(*args):
-    """Tweet out a mocked out note from tweet_roam_note."""
+def test_integration_bot_tweet():
+    """Tweet out a mocked out note from tweet_random_note."""
     from dotenv import load_dotenv
 
-    from roambot.bot import RoamTwitterBot
+    from tftbot.bot import TFTTwitterBotMixin
 
     load_dotenv("../.env")
 
@@ -57,11 +59,7 @@ def test_integration_bot_tweet(*args):
     twitter_access_token = os.environ["TWITTER_ACCESS_TOKEN"]
     twitter_access_secret = os.environ["TWITTER_ACCESS_SECRET"]
 
-    rtb = RoamTwitterBot(
-        "",
-        "",
-        "",
-        "",
+    rtb = TFTTwitterBotMixin(
         twitter_consumer_key,
         twitter_consumer_secret,
         twitter_access_token,

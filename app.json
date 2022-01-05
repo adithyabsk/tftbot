@@ -26,8 +26,8 @@
     "ROAM_API_PASSWORD": {
       "description": "The password for Roam Research."
     },
-    "ROAM_TAG": {
-      "description": "The tag to query for in the Roam graph."
+    "TAG": {
+      "description": "The tag to query for graph."
     }
   },
   "formation": {

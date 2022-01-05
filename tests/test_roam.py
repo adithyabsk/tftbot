@@ -15,16 +15,16 @@ import pytest
 def test_integration_roam_query():
     """Test Roam graph queries.
 
-    Make sure that the [[ROAM_TAG]] specified in env vars exists in the graph.
+    Make sure that the [[TAG]] specified in env vars exists in the graph.
 
     """
     from dotenv import load_dotenv
 
-    from roambot.roam import block_search
+    from tftbot.roam import block_search
 
     load_dotenv("../.env")
 
-    roam_tag = os.environ["ROAM_TAG"]
+    roam_tag = os.environ["TAG"]
     roam_api_graph = os.environ["ROAM_API_GRAPH"]
     roam_api_email = os.environ["ROAM_API_EMAIL"]
     roam_api_password = os.environ["ROAM_API_PASSWORD"]
