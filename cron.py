@@ -2,12 +2,16 @@
 """Cron job for tweeting"""
 
 import os
+import random
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 from dotenv import load_dotenv
 from tzlocal import get_localzone
 
 from tftbot import ObsidianTwitterBot, RoamTwitterBot
+
+# Set random seed
+random.seed(42)
 
 # If a `.env` file exists, load in those environment variables
 load_dotenv()
