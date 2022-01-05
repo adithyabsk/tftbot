@@ -32,15 +32,18 @@ class TFTTwitterBotMixin:
 
     def __init__(
         self,
+        *,
         twitter_consumer_key,
         twitter_consumer_secret,
         twitter_access_token,
         twitter_access_secret,
+        random_seed=42,
     ):
         # Setup twitter api client
         auth = tweepy.OAuthHandler(twitter_consumer_key, twitter_consumer_secret)
         auth.set_access_token(twitter_access_token, twitter_access_secret)
         self.twitter_api = tweepy.API(auth)
+        random.seed(random_seed)
 
     def pick_random_block(self):
         """Pick a random roam block from a list of collected blocks
@@ -119,6 +122,7 @@ class RoamTwitterBot(TFTTwitterBotMixin):
 
     def __init__(
         self,
+        *,
         twitter_consumer_key,
         twitter_consumer_secret,
         twitter_access_token,
@@ -127,12 +131,14 @@ class RoamTwitterBot(TFTTwitterBotMixin):
         roam_api_graph,
         roam_api_email,
         roam_api_password,
+        random_seed,
     ):
         super().__init__(
-            twitter_consumer_key,
-            twitter_consumer_secret,
-            twitter_access_token,
-            twitter_access_secret,
+            twitter_consumer_key=twitter_consumer_key,
+            twitter_consumer_secret=twitter_consumer_secret,
+            twitter_access_token=twitter_access_token,
+            twitter_access_secret=twitter_access_secret,
+            random_seed=random_seed,
         )
         # Set up roam variables
         self.roam_tag = roam_tag
@@ -178,25 +184,26 @@ class ObsidianTwitterBot(TFTTwitterBotMixin):
 
     def __init__(
         self,
+        *,
         twitter_consumer_key,
         twitter_consumer_secret,
         twitter_access_token,
         twitter_access_secret,
         tag,
         vault_name,
+        random_seed=42,
     ):
         super().__init__(
-            twitter_consumer_key,
-            twitter_consumer_secret,
-            twitter_access_token,
-            twitter_access_secret,
+            twitter_consumer_key=twitter_consumer_key,
+            twitter_consumer_secret=twitter_consumer_secret,
+            twitter_access_token=twitter_access_token,
+            twitter_access_secret=twitter_access_secret,
+            random_seed=random_seed,
         )
         # Set up roam variables
         self.tag = tag
         self.vault_name = vault_name
 
-    # TODO: Maybe look into configurations for more intelligent heuristics for picking indexed roam blocks? Spaced
-    #       repetition, etc...
     def pick_random_block(self):
         """Pick a random roam block from a list of collected blocks
 

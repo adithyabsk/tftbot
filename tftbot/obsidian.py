@@ -148,7 +148,8 @@ def get_all_tag_blocks(tag: str) -> List[str]:
     html = markdown(md_text)
     lis = BeautifulSoup(html, "lxml").find_all("li")
     lis_text = [li.next_element.get_text() for li in lis]
-    filtered_lis = [li for li in lis_text if "#" + tag in li]
+    tag_filter = f"[[{tag}]]"
+    filtered_lis = [li for li in lis_text if tag_filter in li]
 
     return filtered_lis
 

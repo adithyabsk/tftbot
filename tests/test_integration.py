@@ -32,14 +32,14 @@ def test_integration_end_to_end_roam():
     roam_api_password = os.environ["ROAM_API_PASSWORD"]
 
     rtb = RoamTwitterBot(
-        twitter_consumer_key,
-        twitter_consumer_secret,
-        twitter_access_token,
-        twitter_access_secret,
-        roam_tag,
-        roam_api_graph,
-        roam_api_email,
-        roam_api_password,
+        twitter_consumer_key=twitter_consumer_key,
+        twitter_consumer_secret=twitter_consumer_secret,
+        twitter_access_token=twitter_access_token,
+        twitter_access_secret=twitter_access_secret,
+        roam_tag=roam_tag,
+        roam_api_graph=roam_api_graph,
+        roam_api_email=roam_api_email,
+        roam_api_password=roam_api_password,
     )
 
     rtb.tweet_random_note()
@@ -68,12 +68,12 @@ def test_integration_end_to_end_obsidian():
     obsidian_vault_name = os.environ["OBSIDIAN_VAULT_NAME"]
 
     otb = ObsidianTwitterBot(
-        twitter_consumer_key,
-        twitter_consumer_secret,
-        twitter_access_token,
-        twitter_access_secret,
-        tag,
-        obsidian_vault_name,
+        twitter_consumer_key=twitter_consumer_key,
+        twitter_consumer_secret=twitter_consumer_secret,
+        twitter_access_token=twitter_access_token,
+        twitter_access_secret=twitter_access_secret,
+        tag=tag,
+        vault_name=obsidian_vault_name,
     )
 
     otb.tweet_random_note()

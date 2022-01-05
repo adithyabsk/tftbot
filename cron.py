@@ -2,7 +2,6 @@
 """Cron job for tweeting"""
 
 import os
-import random
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 from dotenv import load_dotenv
@@ -10,9 +9,7 @@ from tzlocal import get_localzone
 
 from tftbot import ObsidianTwitterBot, RoamTwitterBot
 
-# Set random seed
-random.seed(42)
-
+RANDOM_SEED = 108
 # If a `.env` file exists, load in those environment variables
 load_dotenv()
 
@@ -33,25 +30,27 @@ if tft_choice == "ROAM":
     roam_api_password = os.environ["ROAM_API_PASSWORD"]
 
     tfttb = RoamTwitterBot(
-        twitter_consumer_key,
-        twitter_consumer_secret,
-        twitter_access_token,
-        twitter_access_secret,
-        roam_tag,
-        roam_api_graph,
-        roam_api_email,
-        roam_api_password,
+        twitter_consumer_key=twitter_consumer_key,
+        twitter_consumer_secret=twitter_consumer_secret,
+        twitter_access_token=twitter_access_token,
+        twitter_access_secret=twitter_access_secret,
+        roam_tag=roam_tag,
+        roam_api_graph=roam_api_graph,
+        roam_api_email=roam_api_email,
+        roam_api_password=roam_api_password,
+        random_seed=RANDOM_SEED,
     )
 elif tft_choice == "OBSIDIAN":
     obsidian_tag = os.environ["TAG"]
     obsidian_vault_name = os.environ["OBSIDIAN_VAULT_NAME"]
     tfttb = ObsidianTwitterBot(
-        twitter_consumer_key,
-        twitter_consumer_secret,
-        twitter_access_token,
-        twitter_access_secret,
-        obsidian_tag,
-        obsidian_vault_name,
+        twitter_consumer_key=twitter_consumer_key,
+        twitter_consumer_secret=twitter_consumer_secret,
+        twitter_access_token=twitter_access_token,
+        twitter_access_secret=twitter_access_secret,
+        tag=obsidian_tag,
+        vault_name=obsidian_vault_name,
+        random_seed=RANDOM_SEED,
     )
 else:
     raise ValueError("Undefined TFT_CHOICE")

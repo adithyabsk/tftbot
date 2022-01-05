@@ -13,7 +13,12 @@ def test_split_tweet_240():
     li240 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a convallis magna."
 
     random_id = "W9oV9twrW"
-    rtb = TFTTwitterBotMixin(*(["test"] * 4))
+    rtb = TFTTwitterBotMixin(
+        twitter_consumer_key="test",
+        twitter_consumer_secret="test",
+        twitter_access_token="test",
+        twitter_access_secret="test",
+    )
     assert li240 in rtb.split_tweet_msg(li240, random_id)[0]
 
 
@@ -35,7 +40,12 @@ def test_split_tweet_960():
 
     # this should be five because of the slippage from indicating the number of tweets in the thread
     random_id = "W9oV9twrW"
-    rtb = TFTTwitterBotMixin(*(["test"] * 4))
+    rtb = TFTTwitterBotMixin(
+        twitter_consumer_key="test",
+        twitter_consumer_secret="test",
+        twitter_access_token="test",
+        twitter_access_secret="test",
+    )
     assert len(rtb.split_tweet_msg(li960, random_id)) == 5
 
 
@@ -60,10 +70,10 @@ def test_integration_bot_tweet():
     twitter_access_secret = os.environ["TWITTER_ACCESS_SECRET"]
 
     rtb = TFTTwitterBotMixin(
-        twitter_consumer_key,
-        twitter_consumer_secret,
-        twitter_access_token,
-        twitter_access_secret,
+        twitter_consumer_key=twitter_consumer_key,
+        twitter_consumer_secret=twitter_consumer_secret,
+        twitter_access_token=twitter_access_token,
+        twitter_access_secret=twitter_access_secret,
     )
 
     rtb.compose_tweets(["Test Tweet."])
