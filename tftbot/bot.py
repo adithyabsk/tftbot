@@ -88,10 +88,10 @@ class TFTTwitterBotMixin:
 
     def tweet_sponsor_request(self):
         print("Posting Sponsor Tweet")
-        SPONSOR_URL = "https://github.com/sponsors/adithyabsk?o=sd&sc=t"
+        sponsor_url = "https://github.com/sponsors/adithyabsk?o=sd&sc=t"
         today = date.today().strftime("%B %d, %Y")
-        SPONSOR_MSG = f"It's {today}. Consider supporting this bot's creator @adithya_balaji\n\n{SPONSOR_URL}"
-        self.twitter_api.update_status(SPONSOR_MSG)
+        sponsor_msg = f"It's {today}. Consider supporting this bot's creator @adithya_balaji\n\n{sponsor_url}"
+        self.twitter_api.update_status(sponsor_msg)
         print("Sponsor Tweet posted")
 
     def tweet_random_note(self):
@@ -206,7 +206,13 @@ class ObsidianTwitterBot(TFTTwitterBotMixin):
         block_text = get_random_tag_block(self.tag)
         vault_name = urllib.parse.quote_plus(self.vault_name)
         search_str = " ".join(block_text.split(" ")[:10])
+        search_str = search_str.replace('"', '\\"')
         query = urllib.parse.quote('"' + search_str + '"')
-        block_url = f"obsidian://search?vault={vault_name}&query={query}"
+        # This does not work because twitter does not linkify URIs
+        # block_url = f"obsidian://search?vault={vault_name}&query={query}"
+        block_url = (
+            f"https://www.adithyabalaji.com/obsidian/search/?vault={vault_name}"
+            f"&query={query}"
+        )
 
         return block_url, block_text

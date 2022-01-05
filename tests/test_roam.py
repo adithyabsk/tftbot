@@ -4,9 +4,11 @@ import os
 
 import pytest
 
+RUN_INTEGRATION = bool(os.getenv("INTEGRATION", False))
+
 
 @pytest.mark.skipif(
-    os.getenv("INTEGRATION", False) is False,
+    not RUN_INTEGRATION,
     reason=(
         "Requires roam-api to be installed and env vars to be configured. "
         "Runs for around 9s"

@@ -67,3 +67,4 @@ def test_integration_bot_tweet():
     )
 
     rtb.compose_tweets(["Test Tweet."])
+    rtb.tweet_sponsor_request()

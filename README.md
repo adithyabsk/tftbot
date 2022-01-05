@@ -1,12 +1,11 @@
-# Roam Twitter Bot
+# Tools for Thought (TfT) Twitter Bot
+
+**Supports Roam and Obsidian!**
 
 [![GitHub License](https://img.shields.io/github/license/adithyabsk/roam_bot?logo=6cc644&style=plastic)](https://github.com/adithyabsk/roambot/blob/master/LICENSE)
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Twitter Follow](https://img.shields.io/twitter/follow/adithya_balaji?style=social)](https://twitter.com/intent/follow?screen_name=adithya_balaji)
 ![GitHub Sponsors](https://img.shields.io/github/sponsors/adithyabsk?style=social)
-
-<!-- Since the Repo was renamed, we need to use roam_bot for now, this might
-break soon though. -->
 
 ## Setting up
 
@@ -61,17 +60,17 @@ Install geckodriver (required for selenium)
 Then run the following commands
 
 ```shell
-$ python -m venv roam_bot
-$ ./roam_bot/bin/activate
-(roam_bot) $ pip install -r requirements.txt
-(roam_bot) $ pip install -e .
-(roam_bot) $ cp .env.sample .env  # now update these values manually
+$ python -m venv tft_bot
+$ ./tft_bot/bin/activate
+(tft_bot) $ pip install -r requirements.txt
+(tft_bot) $ pip install -e .
+(tft_bot) $ cp .env.sample .env  # now update these values manually
 ```
 
 You should just be able to run the cron script in a background process.
 
 ```shell
-(roam_bot) $ nohup ./cron.py &
+(tft_bot) $ nohup ./cron.py &
 ```
 
 ## Running Tests
@@ -79,8 +78,8 @@ You should just be able to run the cron script in a background process.
 Running the simple tests.
 
 ```shell
-(roam_bot) $ pip install -r requirements-dev.txt
-(roam_bot) $ pytest
+(tft_bot) $ pip install -r requirements-dev.txt
+(tft_bot) $ pytest
 ```
 
 Running the integration tests. WARNING: these actually tweet out using the
@@ -88,7 +87,7 @@ provided credentials and require configuring your local environment according to
 the instructions above.
 
 ```shell
-(roam_bot) $ INTEGRATION=1 pytest -s -k integration
+(tft_bot) $ INTEGRATION=1 pytest -s -k integration
 ```
 
 ## Roadmap
@@ -100,15 +99,14 @@ The future roadmap for different features.
   - [x] Acquiring Twitter API credentials
   - [x] Deploying bot to Heroku
 
-- [ ] Roam
+- [x] Roam
 
   - [x] Pull blocks from roam database using a single backlink/tag
   - [x] Switch from `roam-api` to self-contained dependency
-  - [ ] Implement arbitrary tag inclusion and exclusion
-  - [ ] Rules for tag parents and children
-  - [ ] Allow users to provide custom datomic expressions
-  - [ ] Look into integration with official Roam (beta) API
-  - [ ] Make urls optional
+
+- [x] Obsidian
+
+  - [x] Add Obsidian support and optional env var switch
 
 - [ ] Bot
 
@@ -119,11 +117,6 @@ The future roadmap for different features.
   - [ ] Migrate to [Heroku Scheduler](https://elements.heroku.com/addons/scheduler)
     to use one-off runners instead of continuously running dyno. There are only
     550 dyno hours for the free tier in a month which is ~22 days.
-  - [ ] Handle tweeting in the preferred timezone
-  - [ ] NLTK for better tweet processing and splitting
-  - [ ] Directly link to Roam block (for public roam graphs)
-  - [ ] Remove cap on tweet thread size
-  - [ ] Add draft tweet feature
 
 - [ ] Advertise the project
 
