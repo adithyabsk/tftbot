@@ -8,12 +8,10 @@ import pytest
 def test_split_tweet_240():
     from roambot import RoamTwitterBot
 
-    li240 = (
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a convallis magna."
-    )
+    li240 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a convallis magna."
 
     random_id = "W9oV9twrW"
-    rtb = RoamTwitterBot(*(["test"]*8))
+    rtb = RoamTwitterBot(*(["test"] * 8))
     assert li240 in rtb.split_tweet_msg(li240, random_id)[0]
 
 
@@ -35,15 +33,17 @@ def test_split_tweet_960():
 
     # this should be five because of the slippage from indicating the number of tweets in the thread
     random_id = "W9oV9twrW"
-    rtb = RoamTwitterBot(*(["test"]*8))
+    rtb = RoamTwitterBot(*(["test"] * 8))
     assert len(rtb.split_tweet_msg(li960, random_id)) == 5
 
 
-@pytest.mark.skipif(os.getenv("INTEGRATION", False) is False,
-                    reason=(
-                            "WARNING: Tweets out to live connected account. Requires twitter env "
-                            "vars to be configured. Runs for around 1s."
-                    ))
+@pytest.mark.skipif(
+    os.getenv("INTEGRATION", False) is False,
+    reason=(
+        "WARNING: Tweets out to live connected account. Requires twitter env "
+        "vars to be configured. Runs for around 1s."
+    ),
+)
 def test_integration_bot_tweet(*args):
     """Tweet out a mocked out note from tweet_roam_note."""
     from dotenv import load_dotenv
@@ -58,9 +58,14 @@ def test_integration_bot_tweet(*args):
     twitter_access_secret = os.environ["TWITTER_ACCESS_SECRET"]
 
     rtb = RoamTwitterBot(
-        "", "", "", "",
-        twitter_consumer_key, twitter_consumer_secret, twitter_access_token,
-        twitter_access_secret
+        "",
+        "",
+        "",
+        "",
+        twitter_consumer_key,
+        twitter_consumer_secret,
+        twitter_access_token,
+        twitter_access_secret,
     )
 
     rtb.compose_tweets(["Test Tweet."])

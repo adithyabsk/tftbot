@@ -109,7 +109,7 @@ The future roadmap for different features.
   - [ ] Allow users to provide custom datomic expressions
   - [ ] Look into integration with official Roam (beta) API
   - [ ] Make urls optional
-  
+
 - [ ] Bot
 
   - [x] Split long tweets into threads (max size = 9)

@@ -1,4 +1,3 @@
-import os
 import random
 import textwrap
 
@@ -36,9 +35,17 @@ class RoamTwitterBot:
 
     """
 
-    def __init__(self, roam_tag, roam_api_graph, roam_api_email, roam_api_password,
-                 twitter_consumer_key, twitter_consumer_secret, twitter_access_token,
-                 twitter_access_secret):
+    def __init__(
+        self,
+        roam_tag,
+        roam_api_graph,
+        roam_api_email,
+        roam_api_password,
+        twitter_consumer_key,
+        twitter_consumer_secret,
+        twitter_access_token,
+        twitter_access_secret,
+    ):
         # Set up roam variables
         self.roam_tag = roam_tag
         self.roam_api_graph = roam_api_graph
@@ -64,7 +71,8 @@ class RoamTwitterBot:
             self.roam_api_graph,
             self.roam_api_email,
             self.roam_api_password,
-            max_length=MAX_TWEET * MAX_NUM_TWEET)
+            max_length=MAX_TWEET * MAX_NUM_TWEET,
+        )
 
         return random.choice(options)
 
@@ -72,7 +80,9 @@ class RoamTwitterBot:
     #       digging to see if this is a solved problem; cursory searches indicate it is not.
     #       https://stackoverflow.com/a/4576110/3262054
     def split_tweet_msg(self, long_string, block_id):
-        block_url = f"https://roamresearch.com/#/app/{self.roam_api_graph}/page/{block_id}"
+        block_url = (
+            f"https://roamresearch.com/#/app/{self.roam_api_graph}/page/{block_id}"
+        )
         template_tweet = f"{long_string}\n\n{block_url}"
         if len(template_tweet) <= MAX_TWEET:
             return [template_tweet]

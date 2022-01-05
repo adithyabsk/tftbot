@@ -5,11 +5,13 @@ import os
 import pytest
 
 
-@pytest.mark.skipif(os.getenv("INTEGRATION", False) is False,
-                    reason=(
-                            "WARNING: Tweets out to live connected account. Requires all env "
-                            "vars to be configured. Runs for around 10s."
-                    ))
+@pytest.mark.skipif(
+    os.getenv("INTEGRATION", False) is False,
+    reason=(
+        "WARNING: Tweets out to live connected account. Requires all env "
+        "vars to be configured. Runs for around 10s."
+    ),
+)
 def test_integration_end_to_end_roam():
     """Tweet out a mocked out note from tweet_roam_note."""
     from dotenv import load_dotenv
@@ -28,8 +30,14 @@ def test_integration_end_to_end_roam():
     twitter_access_secret = os.environ["TWITTER_ACCESS_SECRET"]
 
     rtb = RoamTwitterBot(
-        roam_tag, roam_api_graph, roam_api_email, roam_api_password,
-        twitter_consumer_key, twitter_consumer_secret, twitter_access_token, twitter_access_secret
+        roam_tag,
+        roam_api_graph,
+        roam_api_email,
+        roam_api_password,
+        twitter_consumer_key,
+        twitter_consumer_secret,
+        twitter_access_token,
+        twitter_access_secret,
     )
 
     rtb.tweet_roam_note()

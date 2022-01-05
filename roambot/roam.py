@@ -1,10 +1,9 @@
 import os
-import time
 
+from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions
-from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 
 ROAM_SIGNIN_URL = "https://roamresearch.com/#/signin"
@@ -22,8 +21,10 @@ def setup_roam_browser(roam_api_graph, roam_api_email, roam_api_password):
 
     # Check that we are on the sign in page
     wait.until(
-        expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, "input[name='email']")),
-        "failed to navigate to sign in page"
+        expected_conditions.visibility_of_element_located(
+            (By.CSS_SELECTOR, "input[name='email']")
+        ),
+        "failed to navigate to sign in page",
     )
 
     # Fill Email and Password and log in
@@ -34,14 +35,18 @@ def setup_roam_browser(roam_api_graph, roam_api_email, roam_api_password):
     passwd_elem.send_keys(Keys.RETURN)
 
     # Check that we are on the graph list page
-    wait.until(expected_conditions.visibility_of_element_located((By.PARTIAL_LINK_TEXT, f"{roam_api_graph}")))
-    graph_url = ROAM_APP_URL+f"/{roam_api_graph}"
+    wait.until(
+        expected_conditions.visibility_of_element_located(
+            (By.PARTIAL_LINK_TEXT, f"{roam_api_graph}")
+        )
+    )
+    graph_url = ROAM_APP_URL + f"/{roam_api_graph}"
     browser.get(graph_url)
 
     # Check that the page is fully loaded
     WebDriverWait(browser, 60).until(
         expected_conditions.visibility_of_element_located((By.CLASS_NAME, "roam-app")),
-        "failed to navigate to graph page"
+        "failed to navigate to graph page",
     )
 
     return browser
@@ -63,7 +68,9 @@ def run_query(browser, query):
 
 
 # TODO: If this ever gets more complicated than this, consider turning it into a class
-def block_search(tag, roam_api_graph, roam_api_email, roam_api_password, max_length=None):
+def block_search(
+    tag, roam_api_graph, roam_api_email, roam_api_password, max_length=None
+):
     """Search roam graph for blocks with a particular tag.
 
     Note:

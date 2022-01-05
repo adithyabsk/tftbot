@@ -5,11 +5,13 @@ import os
 import pytest
 
 
-@pytest.mark.skipif(os.getenv("INTEGRATION", False) is False,
-                    reason=(
-                            "Requires roam-api to be installed and env vars to be configured. "
-                            "Runs for around 9s"
-                    ))
+@pytest.mark.skipif(
+    os.getenv("INTEGRATION", False) is False,
+    reason=(
+        "Requires roam-api to be installed and env vars to be configured. "
+        "Runs for around 9s"
+    ),
+)
 def test_integration_roam_query():
     """Test Roam graph queries.
 

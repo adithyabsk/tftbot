@@ -1,4 +1,9 @@
+# Testing
 pytest==6.2.2
 coverage==5.4
 pytest-cov==2.11.1
-black==20.8b1
+
+# Linting
+black==21.12b0
+isort==5.10.1
+flake8==4.0.1
