@@ -5,6 +5,8 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/adithya_balaji?style=social)](https://twitter.com/intent/follow?screen_name=adithya_balaji)
 ![GitHub Sponsors](https://img.shields.io/github/sponsors/adithyabsk?style=social)
 
+<img src="https://i.imgur.com/27bBuwP.png" style="width:40%">
+
 **Supports Roam and Obsidian!**
 
 ## Setting up
