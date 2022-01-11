@@ -50,8 +50,7 @@ def get_service():
 
     # If there are no (valid) credentials available, let the user log in.
     if not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
+        creds.refresh(Request())
         # Save the credentials for the next run
         with open("token.json", "w") as token:
             token.write(creds.to_json())
