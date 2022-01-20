@@ -26,6 +26,9 @@ getting credentials should be intuitive.
 * Obtain the credentials JSON file by following the following instructions
   * https://developers.google.com/workspace/guides/create-credentials
   * You will need to authorize Drive API
+  * Make sure that the OAuth consent screen settings is set to production,
+  otherwise the app will terminate the credentials in 7 days and the token
+  [will be unable to be refreshed.](https://stackoverflow.com/a/67966982/3262054)
 * Then you will need to manually run the `generate_initial_token` function
 * Run:
 
